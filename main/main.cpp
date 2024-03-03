@@ -5,16 +5,11 @@
 
 extern "C" void app_main(void)
 {
-    static constexpr gpio_num_t MOTOR4_PWM_PIN = GPIO_NUM_33;
+    Drive *drive = new Drive();
 
-    Timer timer0 = Timer(0);
-
-    Drive *drive = new Drive(MOTOR4_PWM_PIN, 0);
-    drive->initialize(&timer0);
+    drive->initialize();
 
     drive->arm();
-
-    drive->setPercentage(10);
 
     for (;;)
     {
